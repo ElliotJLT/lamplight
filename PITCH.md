@@ -33,9 +33,10 @@ Lamplight is not a running app. There is no social graph, no activity tracking, 
 ## Status
 
 - ✅ Working prototype: live worldwide map of lit/unlit ways + lamp positions from OSM, with per-viewport coverage stats
-- 🔜 Coverage benchmark across top running cities
+- ✅ Route scoring: upload any GPX (or draw a route) → 0–100 after-dark score + data-confidence + the route colored lit/unlit/unknown. The scorer is an embeddable, dependency-free TypeScript module — integration details in [INTEGRATIONS.md](./INTEGRATIONS.md)
+- ✅ Coverage benchmark tooling for 21 running cities (`scripts/coverage.mjs`)
 - 🔜 Council/OS data → OSM import pipeline (the data flywheel)
-- 🔜 Vector tiles + route scoring API
+- 🔜 Vector tiles + reference routing profiles
 
 MIT licensed. Data ODbL via OpenStreetMap.
 

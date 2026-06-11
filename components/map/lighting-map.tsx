@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 import { fetchLighting, type LightingData, type LitStatus } from "@/lib/overpass"
+import type { LegStatus, RouteScore } from "@/lib/route-score"
 
 export type MapStatus =
   | { kind: "idle" }
@@ -16,6 +17,12 @@ interface LightingMapProps {
   onStatus: (status: MapStatus) => void
   /** Incremented externally to trigger a flyTo */
   flyTo?: { lat: number; lon: number; seq: number }
+  /** Route points being drawn by hand */
+  draft: [number, number][]
+  /** Scored route to render on top of the lighting layer */
+  scored: RouteScore | null
+  drawing: boolean
+  onMapClick: (lat: number, lon: number) => void
 }
 
 const MIN_DATA_ZOOM = 14
@@ -29,11 +36,29 @@ const WAY_STYLE: Record<LitStatus, L.PolylineOptions> = {
   unknown: { color: "#475569", weight: 2, opacity: 0.5, dashArray: "4 6" },
 }
 
-export function LightingMap({ onStatus, flyTo }: LightingMapProps) {
+const ROUTE_STYLE: Record<LegStatus, L.PolylineOptions> = {
+  lit: { color: "#fbbf24", weight: 7, opacity: 0.95 },
+  unlit: { color: "#f43f5e", weight: 7, opacity: 0.95 },
+  unknown: { color: "#94a3b8", weight: 6, opacity: 0.9, dashArray: "6 8" },
+  "off-network": { color: "#8b5cf6", weight: 5, opacity: 0.85, dashArray: "2 8" },
+}
+
+export function LightingMap({
+  onStatus,
+  flyTo,
+  draft,
+  scored,
+  drawing,
+  onMapClick,
+}: LightingMapProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<L.Map | null>(null)
+  const draftLayerRef = useRef<L.LayerGroup | null>(null)
+  const routeLayerRef = useRef<L.LayerGroup | null>(null)
   const onStatusRef = useRef(onStatus)
   onStatusRef.current = onStatus
+  const onMapClickRef = useRef(onMapClick)
+  onMapClickRef.current = onMapClick
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
@@ -58,6 +83,12 @@ export function LightingMap({ onStatus, flyTo }: LightingMapProps) {
 
     const wayLayer = L.layerGroup().addTo(map)
     const lampLayer = L.layerGroup().addTo(map)
+    routeLayerRef.current = L.layerGroup().addTo(map)
+    draftLayerRef.current = L.layerGroup().addTo(map)
+
+    map.on("click", (e: L.LeafletMouseEvent) => {
+      onMapClickRef.current(e.latlng.lat, e.latlng.lng)
+    })
 
     let abort: AbortController | null = null
     let debounce: ReturnType<typeof setTimeout> | null = null
@@ -133,15 +164,66 @@ export function LightingMap({ onStatus, flyTo }: LightingMapProps) {
       if (debounce) clearTimeout(debounce)
       map.remove()
       mapRef.current = null
+      draftLayerRef.current = null
+      routeLayerRef.current = null
     }
   }, [])
 
   useEffect(() => {
     if (flyTo && mapRef.current) {
-      mapRef.current.flyTo([flyTo.lat, flyTo.lon], Math.max(mapRef.current.getZoom(), 15))
+      mapRef.current.flyTo(
+        [flyTo.lat, flyTo.lon],
+        Math.max(mapRef.current.getZoom(), 15)
+      )
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flyTo?.seq])
 
-  return <div ref={containerRef} className="h-full w-full bg-zinc-950" />
+  // Hand-drawn draft route
+  useEffect(() => {
+    const layer = draftLayerRef.current
+    if (!layer) return
+    layer.clearLayers()
+    if (draft.length === 0) return
+    if (draft.length > 1) {
+      layer.addLayer(
+        L.polyline(draft, { color: "#e4e4e7", weight: 2, dashArray: "2 6" })
+      )
+    }
+    for (const p of draft) {
+      layer.addLayer(
+        L.circleMarker(p, {
+          radius: 4,
+          color: "#e4e4e7",
+          fillColor: "#18181b",
+          fillOpacity: 1,
+          weight: 2,
+        })
+      )
+    }
+  }, [draft])
+
+  // Scored route overlay
+  useEffect(() => {
+    const layer = routeLayerRef.current
+    const map = mapRef.current
+    if (!layer || !map) return
+    layer.clearLayers()
+    if (!scored) return
+    for (const leg of scored.legs) {
+      layer.addLayer(L.polyline(leg.points, ROUTE_STYLE[leg.status]))
+    }
+    const all = scored.legs.flatMap((l) => l.points)
+    if (all.length > 0) {
+      map.fitBounds(L.latLngBounds(all), { padding: [60, 60], maxZoom: 16 })
+    }
+  }, [scored])
+
+  return (
+    <div
+      ref={containerRef}
+      className="h-full w-full bg-zinc-950"
+      style={{ cursor: drawing ? "crosshair" : undefined }}
+    />
+  )
 }
