@@ -223,6 +223,20 @@ function heuristicMapping(header, data) {
   if (eI >= 0 && nI >= 0 && inRange(sample(eI), 0, 800000) && inRange(sample(nI), 0, 1300000)) {
     return { x: eI, y: nI, crs: "osgb36" }
   }
+
+  // Fuzzy pass for council-flavoured names like Asset_XCords / Easting_BNG
+  const contains = (subs) =>
+    lower.findIndex((h) => subs.some((s) => h.includes(s)))
+  const eF = contains(["east", "xcord", "x_cord"])
+  const nF = contains(["north", "ycord", "y_cord"])
+  if (eF >= 0 && nF >= 0 && inRange(sample(eF), 0, 800000) && inRange(sample(nF), 0, 1300000)) {
+    return { x: eF, y: nF, crs: "osgb36" }
+  }
+  const latF = contains(["lat"])
+  const lonF = contains(["lon", "lng"])
+  if (latF >= 0 && lonF >= 0 && inRange(sample(latF), -90, 90) && inRange(sample(lonF), -180, 180)) {
+    return { x: lonF, y: latF, crs: "wgs84" }
+  }
   return null
 }
 

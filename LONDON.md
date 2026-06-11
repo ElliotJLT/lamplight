@@ -70,8 +70,8 @@ lamp dataset are the highest-value ingestion targets.
 
 | Borough | Dataset | Status |
 |---|---|---|
-| Barnet | [Street lighting inventory](https://open.barnet.gov.uk/dataset/e7kq2/street-lighting-inventory) | Page confirmed; needs direct download URL in `data/sources.json` |
-| Camden | [Camden open data portal](https://opendata.camden.gov.uk) (Socrata) | Candidate URL in registry, unverified |
+| Barnet | [Street lighting inventory](https://open.barnet.gov.uk/dataset/e7kq2/street-lighting-inventory) | ✅ **Ingested** — 19,898 lamps (`data/lamps/barnet.csv.gz`, 2020-07 inventory, filtered to `SL` asset types) |
+| Camden | [Camden open data portal](https://opendata.camden.gov.uk) (Socrata) | ✅ **Ingested** — 10,376 lamps (`data/lamps/camden.csv.gz`, auto-fetched by CI) |
 | Lambeth | Lambeth open mapping data portal | Known to publish street lighting; needs URL |
 | All boroughs | [London Datastore](https://data.london.gov.uk/search?q=street%20lighting) + [data.gov.uk](https://www.data.gov.uk/search?q=street+lighting+london) | Search for the rest |
 
