@@ -4,7 +4,7 @@
 
 Lamplight is an open street-lighting map for night runners. It renders street-lighting data from OpenStreetMap on a dark map, and scores any route — uploaded as GPX or drawn by hand — from 0–100 for how lit it will be after dark.
 
-**Live site:** https://elliotjlt.github.io/plod/ (deployed from this repo via GitHub Pages)
+**Live site:** https://elliotjlt.github.io/lamplight/ (deployed from this repo via GitHub Pages)
 
 ## What it does
 

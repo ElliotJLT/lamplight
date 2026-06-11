@@ -9,7 +9,7 @@ import {
 } from "lucide-react"
 import { MapApp } from "@/components/map/map-app"
 
-const REPO_URL = "https://github.com/ElliotJLT/plod"
+const REPO_URL = "https://github.com/ElliotJLT/lamplight"
 
 export default function Landing() {
   return (

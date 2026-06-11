@@ -28,7 +28,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /plod
+          NEXT_PUBLIC_BASE_PATH: /lamplight
       - uses: actions/configure-pages@v5
         with:
           enablement: true
