@@ -22,6 +22,10 @@ For half the year at northern latitudes, most runs by working adults happen befo
 
 Where coverage is thin, the plan is not a private database. Lamp-by-lamp records exist beyond OSM — many local councils publish theirs as open data, and a national-scale GB street-lights dataset exists under a public-sector licence (a partnership conversation, not a free download). The roadmap's import pipeline converts compatibly-licensed open datasets into OSM tagging, so every OSM-based map and app improves at once.
 
+## Data pipeline
+
+The moat isn't the map — it's the unglamorous work of turning hundreds of inconsistent council lamp datasets into one canonical, licence-clean layer and feeding it back into OSM. `scripts/ingest.mjs` normalizes council open data (CSV/GeoJSON/ArcGIS, BNG→WGS84, Claude-assisted schema mapping for messy files) into `data/lamps/`, and `scripts/conflate.mjs` turns ingested lamps into human-reviewable `lit=yes` proposals for OSM. Full docs, licensing rules and the repo-size answer: [DATA.md](./DATA.md).
+
 ## Running locally
 
 ```bash
@@ -40,7 +44,7 @@ The scorer is a small, dependency-free TypeScript module designed to be lifted i
 1. ~~Route scoring~~ — ✅ shipped (GPX upload, draw-on-map, embeddable scorer)
 2. ~~Public site~~ — ✅ GitHub Pages deploy from this repo
 3. **Publish the coverage benchmark** — run `scripts/coverage.mjs`, commit the table
-4. **Import pipeline** — open lamp datasets → OSM `lit` tagging proposals (the data flywheel)
+4. ~~Import pipeline~~ — ✅ v0 shipped: `ingest.mjs` (council data → canonical lamp dataset) + `conflate.mjs` (lamps → OSM `lit` proposals); next is running it across councils and the first community-reviewed import
 5. **Pre-rendered vector tiles** — a lighting layer any app can add in one line, without hammering Overpass
 6. **Reference routing profiles** — "prefer lit streets" weights for the major open routing engines
 

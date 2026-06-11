@@ -1,0 +1,45 @@
+{
+  "comment": "Registry of open street-lighting datasets for scripts/ingest.mjs. Only OGL/CC-BY/ODbL-compatible sources belong here - never PSGA/premium data. URLs rot; run `node scripts/ingest.mjs --check` to probe them, and prefer --file mode with a manually downloaded export when a URL breaks. verified:true means a maintainer has successfully ingested from that URL.",
+  "sources": [
+    {
+      "id": "bristol",
+      "name": "Bristol City Council street lights",
+      "country": "GB",
+      "licence": "OGL-UK-3.0",
+      "attribution": "Bristol City Council",
+      "type": "geojson",
+      "url": "https://opendata.bristol.gov.uk/explore/dataset/streetlights-and-street-furniture/download/?format=geojson",
+      "verified": false
+    },
+    {
+      "id": "camden",
+      "name": "London Borough of Camden street lighting",
+      "country": "GB",
+      "licence": "OGL-UK-3.0",
+      "attribution": "London Borough of Camden",
+      "type": "csv",
+      "url": "https://opendata.camden.gov.uk/api/views/dfq3-8wzu/rows.csv?accessType=DOWNLOAD",
+      "verified": false
+    },
+    {
+      "id": "york",
+      "name": "City of York Council street lighting",
+      "country": "GB",
+      "licence": "OGL-UK-3.0",
+      "attribution": "City of York Council",
+      "type": "csv",
+      "url": "https://data.yorkopendata.org/dataset/street-lighting",
+      "verified": false
+    },
+    {
+      "id": "dundee",
+      "name": "Dundee City Council street lights",
+      "country": "GB",
+      "licence": "OGL-UK-3.0",
+      "attribution": "Dundee City Council",
+      "type": "csv",
+      "url": "https://data.dundeecity.gov.uk/dataset/street-lights",
+      "verified": false
+    }
+  ]
+}

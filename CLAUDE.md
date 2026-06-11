@@ -16,6 +16,8 @@ This repo previously contained "Plod", a personal running PWA. That product was 
 - `components/map/route-panel.tsx` — GPX upload / draw controls + score card
 - `app/page.tsx` — single full-screen map page, owns route state
 - `scripts/coverage.mjs` — node CLI benchmarking `lit` coverage across 21 cities
+- `scripts/ingest.mjs` — council open data → `data/lamps/<id>.csv.gz` + index.json (heuristic column mapping, claude-sonnet-4-6 fallback for messy schemas, OSGB36→WGS84 conversion); see DATA.md
+- `scripts/conflate.mjs` — ingested lamps × Overpass untagged ways → human-reviewable `lit=yes` proposals (never auto-edits OSM)
 - `INTEGRATIONS.md` / `PITCH.md` — partner-facing docs
 
 ## Key Behaviours

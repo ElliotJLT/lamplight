@@ -36,7 +36,7 @@ Lamplight is not a running app. There is no social graph, no activity tracking, 
 - ✅ Route scoring: upload any GPX (or draw a route) → 0–100 after-dark score + data-confidence + the route colored lit/unlit/unknown. The scorer is an embeddable, dependency-free TypeScript module — integration details in [INTEGRATIONS.md](./INTEGRATIONS.md)
 - ✅ Coverage benchmark tooling for 21 running cities (`scripts/coverage.mjs`)
 - ✅ Public site with the live map: https://elliotjlt.github.io/lamplight/
-- 🔜 Open lamp data → OSM import pipeline (the data flywheel)
+- ✅ Ingestion pipeline v0: council open-data lamp records → one canonical licence-tracked dataset (LLM-assisted schema mapping, BNG→WGS84), plus a conflation tool producing human-reviewable OSM `lit` proposals — the data flywheel ([DATA.md](./DATA.md))
 - 🔜 Vector tiles + reference routing profiles
 
 MIT licensed. Data ODbL via OpenStreetMap.
