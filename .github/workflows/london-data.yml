@@ -6,6 +6,9 @@ name: London case study data
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/london-data.yml"] # runs when this file changes
   schedule:
     - cron: "17 4 * * 1" # weekly, Monday 04:17 UTC
 
