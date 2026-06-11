@@ -1,41 +1,53 @@
-# 🏃 plod
+# 💡 Lamplight
 
-A calm running app that cares about your health, not your PBs. PWA with Strava sync.
+**An open street-lighting map for running after dark.**
 
-**Status: Prototype — built as a personal project, not deployed commercially**
+Lamplight shows which streets and paths are lit at night, so runners (and walkers, and cyclists) can plan routes they feel safe on in winter. It's built entirely on open data — OpenStreetMap's `lit` tags and `highway=street_lamp` nodes — and is designed to become an embeddable layer that any running app can adopt.
 
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?logo=supabase&logoColor=white)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+**Status: working prototype.** Pan the map anywhere in the world and it pulls live lighting data for the area in view.
 
-## What
+## Why
 
-Most running apps optimise for speed. Plod optimises for consistency. It syncs your runs from Strava, layers on weather and air quality data, and helps you plan your week around conditions — not pace targets. Built for runners who just want to keep moving.
+Every running app can route you 5k from your front door. None of them can tell you whether you'll be running it in the dark. From October to March in northern latitudes, most runs by working people happen before sunrise or after sunset — and "is this route lit?" is the single biggest factor in whether people (especially women) run at all.
 
-## Quick Start
+The data to answer that question already exists. It's just fragmented and unused:
+
+- OpenStreetMap has a [`lit=yes/no` tag](https://wiki.openstreetmap.org/wiki/Key:lit) on ways and [individual street lamps](https://wiki.openstreetmap.org/wiki/Tag:highway=street_lamp) — patchy, but good in many cities
+- Ordnance Survey has captured [6.5 million street lights across Great Britain](https://www.ordnancesurvey.co.uk/news/new-national-street-lights-data-from-ordnance-survey)
+- Dozens of councils publish lamp-column locations as open data
+- Google has been [testing a lighting layer](https://www.techradar.com/news/google-maps-may-start-guiding-you-towards-well-lit-routes-instead-of-dark-alleys) for years without shipping it
+
+Lamplight's goal: make street lighting a first-class, open map layer — and make it trivial for any routing product to use it. See [PITCH.md](./PITCH.md) for the partner pitch.
+
+## How it works
+
+- **Map**: Leaflet with CARTO dark basemap (the app assumes you're planning a night run)
+- **Data**: live [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API) queries for the current viewport — runnable ways classified as **lit** (amber), **unlit** (rose), or **no data** (dashed grey), plus individual lamp nodes at high zoom
+- **Coverage honesty**: the stats panel shows what share of paths in view actually carry lighting data, because the prototype's job is to prove (or disprove) that OSM coverage is good enough where you run
+
+No accounts, no backend, no API keys. The whole thing is a static Next.js app talking to public OSM infrastructure.
+
+## Running locally
 
 ```bash
-git clone https://github.com/ElliotJLT/plod.git
-cd plod
 npm install
-cp .env.example .env  # fill in Supabase + Strava + weather API keys
 npm run dev
 ```
 
-## Features
+Open http://localhost:3000. Search for your town or hit the locate button.
 
-- 📊 **Today dashboard** — current conditions, air quality, and weekly progress at a glance
-- 🔄 **Strava sync** — automatic activity import
-- 🌤️ **Weather + AQI** — real-time conditions to inform run decisions
-- 📅 **Week planner** — drag-and-drop scheduling with cascade rescheduling
-- 💪 **Effort ratings** — log how runs felt, not just how fast they were
-- 🧠 **Training plans** — AI-generated half-marathon plans using 80/20 polarised training
+## Roadmap
+
+1. **Prove coverage** — measure `lit` tag coverage across major running cities
+2. **Import pipeline** — convert council / OS open data lamp datasets into OSM-ready `lit` tagging proposals (the highest-leverage contribution: improving the shared map, not forking it)
+3. **Pre-rendered vector tiles** — a `lighting` tile layer any app can add in one line, instead of hammering Overpass
+4. **Routing cost API** — "prefer lit streets" as a weight any router (Valhalla/OSRM/GraphHopper profiles) can consume
+5. **Lamplight score** — a single 0–100 "after-dark friendliness" score per route, embeddable in any app's route summary
 
 ## Tech
 
-Next.js 14, TypeScript, Tailwind CSS, Supabase, Strava API, OpenWeatherMap, Leaflet.
+Next.js 14 (App Router) · TypeScript · Tailwind CSS · Leaflet · Overpass API · Nominatim
 
 ## License
 
-MIT
+MIT. Map data © OpenStreetMap contributors ([ODbL](https://www.openstreetmap.org/copyright)). Basemap © CARTO.

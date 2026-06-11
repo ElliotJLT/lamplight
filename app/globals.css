@@ -4,48 +4,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.75rem;
-  }
-
-  .dark {
-    --background: 240 6% 6%;
+    --background: 240 6% 4%;
     --foreground: 0 0% 96%;
     --card: 240 5% 9%;
     --card-foreground: 0 0% 96%;
     --popover: 240 5% 9%;
     --popover-foreground: 0 0% 96%;
-    --primary: 0 0% 96%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 43 96% 56%;
+    --primary-foreground: 240 6% 6%;
     --secondary: 240 4% 14%;
     --secondary-foreground: 0 0% 96%;
     --muted: 240 4% 14%;
     --muted-foreground: 240 5% 52%;
-    --accent: 168 45% 42%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 15 60% 40%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 240 6% 6%;
+    --destructive: 350 89% 60%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 4% 16%;
     --input: 240 4% 16%;
-    --ring: 168 45% 42%;
+    --ring: 43 96% 56%;
+    --radius: 0.75rem;
   }
 }
 
@@ -58,100 +36,34 @@
   }
 }
 
-/* Smooth transitions for interactive elements */
-@layer utilities {
-  .transition-colors {
-    transition-property: color, background-color, border-color;
-    transition-timing-function: ease-out;
-    transition-duration: 150ms;
-  }
-
-  .transition-all-subtle {
-    transition-property: all;
-    transition-timing-function: ease-out;
-    transition-duration: 150ms;
-  }
+/* Dark theme for Leaflet chrome */
+.leaflet-container {
+  background: #09090b;
+  font-family: inherit;
 }
 
-/* Animation keyframes */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  background: #18181b;
+  border-color: #27272a;
+  color: #e4e4e7;
 }
 
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.leaflet-tooltip {
+  background: #18181b;
+  border-color: #27272a;
+  color: #e4e4e7;
 }
 
-@keyframes slide-up {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
+.leaflet-tooltip::before {
+  display: none;
 }
 
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.leaflet-control-attribution {
+  background: rgba(9, 9, 11, 0.7) !important;
+  color: #71717a;
 }
 
-/* Animation utilities */
-@layer utilities {
-  .animate-fade-in {
-    animation: fade-in 200ms ease-out forwards;
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 200ms ease-out forwards;
-  }
-
-  .animate-slide-up {
-    animation: slide-up 250ms ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scale-in 150ms ease-out forwards;
-  }
-
-  /* Staggered children animations */
-  .stagger-children > * {
-    opacity: 0;
-    animation: fade-in-up 200ms ease-out forwards;
-  }
-
-  .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
-  .stagger-children > *:nth-child(2) { animation-delay: 50ms; }
-  .stagger-children > *:nth-child(3) { animation-delay: 100ms; }
-  .stagger-children > *:nth-child(4) { animation-delay: 150ms; }
-  .stagger-children > *:nth-child(5) { animation-delay: 200ms; }
-}
-
-/* Card hover effect - subtle border glow */
-@layer components {
-  .card-interactive {
-    @apply transition-colors;
-  }
-
-  .card-interactive:hover {
-    border-color: hsl(168 45% 42% / 0.3);
-  }
+.leaflet-control-attribution a {
+  color: #a1a1aa;
 }
