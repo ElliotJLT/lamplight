@@ -2,7 +2,9 @@
 
 **See which streets are lit before you run in the dark.**
 
-A one-day product exploration, open-sourced and parked. The live map, route scorer and data pipeline all work — and the honest market read is at the bottom.
+A one-day product exploration, open source. The live map, route scorer and data pipeline all work.
+
+**Status:** side project — maintained, not actively developed.
 
 **Live:** https://elliotjlt.github.io/lamplight/
 
@@ -15,13 +17,7 @@ For half the year most runs happen in the dark, and "is this route lit?" decides
 - **Lighting map** — lit / unlit / *unknown* streets worldwide, live from OSM. Unknown is shown honestly, never guessed.
 - **Route scoring** — upload a GPX or draw a route, get a 0–100 after-dark score with a confidence figure. Missing data lowers confidence, never inflates the score.
 - **Data pipeline** — council lamp inventories → one licence-clean open dataset ([DATA.md](./DATA.md)). Two London boroughs in so far (~30k lamps), refreshed by CI ([LONDON.md](./LONDON.md)), with OSM `lit` proposals as the contribution flywheel.
-- The partner thesis and integration surfaces: [PITCH.md](./PITCH.md) · [INTEGRATIONS.md](./INTEGRATIONS.md)
-
-## Why it's parked
-
-The build works; the market read says side project, not company. Three teams have found this idea before (a niche routing tool, a maps giant that never shipped, an OS-accelerator startup) and none broke out — and routing people "safely" is a liability surface mainstream apps deliberately avoid. Full landscape: [COMPETITIVE.md](./COMPETITIVE.md).
-
-Knowing that after one day cost a day. It keeps itself alive: static site, weekly data cron, no servers, no keys.
+- The partner thesis and integration surfaces: [PITCH.md](./PITCH.md) · [INTEGRATIONS.md](./INTEGRATIONS.md) · competitive landscape: [COMPETITIVE.md](./COMPETITIVE.md)
 
 ## Run it
 
