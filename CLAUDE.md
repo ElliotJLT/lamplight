@@ -9,9 +9,16 @@ This repo previously contained "Plod", a personal running PWA. That product was 
 - Pure client-side Next.js 14 (App Router) + TypeScript — no backend, no auth, no env vars
 - `lib/overpass.ts` — Overpass API client: fetches highway ways + street lamps for a bbox, classifies `lit` tags, computes coverage stats
 - `lib/geocode.ts` — Nominatim place search
-- `components/map/lighting-map.tsx` — Leaflet map (CARTO dark basemap), debounced viewport fetching, way/lamp rendering
+- `lib/route-score.ts` — embeddable route scorer: snap-matches a polyline to lit ways (grid index, ~20m samples, 35m tolerance), returns 0-100 score + confidence + colored legs
+- `lib/gpx.ts` — minimal GPX track/route parser
+- `components/map/lighting-map.tsx` — Leaflet map (CARTO dark basemap), debounced viewport fetching, way/lamp/route rendering, draw mode
 - `components/map/status-panel.tsx` — legend + coverage stats
-- `app/page.tsx` — single full-screen map page
+- `components/map/route-panel.tsx` — GPX upload / draw controls + score card
+- `app/page.tsx` — single full-screen map page, owns route state
+- `scripts/coverage.mjs` — node CLI benchmarking `lit` coverage across 21 cities
+- `scripts/ingest.mjs` — council open data → `data/lamps/<id>.csv.gz` + index.json (heuristic column mapping, claude-sonnet-4-6 fallback for messy schemas, OSGB36→WGS84 conversion); see DATA.md
+- `scripts/conflate.mjs` — ingested lamps × Overpass untagged ways → human-reviewable `lit=yes` proposals (never auto-edits OSM)
+- `INTEGRATIONS.md` / `PITCH.md` — partner-facing docs
 
 ## Key Behaviours
 - Data only loads at zoom >= 14 (Overpass payload limits); lamps render at zoom >= 16
@@ -29,7 +36,7 @@ This repo previously contained "Plod", a personal running PWA. That product was 
 - `npm run lint` - Run ESLint
 
 ## Important Rules
-1. Be honest about data coverage — never render untagged ways as if they were lit or unlit
+1. Be honest about data coverage — never render untagged ways as if they were lit or unlit; the route score is computed only over tagged distance (missing data lowers `confidence`, never inflates `score`)
 2. Be a good citizen of OSM infrastructure: debounce/abort Overpass calls, keep queries bounded, attribute OSM/CARTO
 3. Mobile-first (375px minimum); the primary use case is a phone at the front door before a run
 4. No accounts, no tracking, no API keys — keep it static and open
