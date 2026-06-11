@@ -1,34 +1,27 @@
-# Plod - Project Context
+# Lamplight - Project Context
 
 ## About This Project
-Plod is a minimalist PWA for casual runners. It syncs runs from Strava and adds a health-focused layer with weather, air quality, and effort ratings. Built for two users (Elliot and Charlotte) - not a commercial product.
+Lamplight is an open street-lighting map for running after dark. It renders OpenStreetMap `lit` data (lit/unlit/untagged ways and street lamp nodes) on a dark map so runners can plan safe night routes. The long-term goal is an embeddable "lighting layer" (tiles + routing weights + route scores) that running apps like Strava and Komoot can integrate — see PITCH.md.
 
-## Philosophy
-- Health and consistency over performance
-- No pace/speed metrics - this isn't about getting faster
-- Calm, minimal UI - not sporty or aggressive
-- "Quiet proof" of progress, not gamification
-- The name "Plod" is intentionally humble
+This repo previously contained "Plod", a personal running PWA. That product was removed in June 2026; its history is in git.
 
-## Tech Stack
-- Next.js 14+ (App Router) with TypeScript
-- Tailwind CSS + shadcn/ui (dark theme, "new-york" style)
-- Supabase (PostgreSQL + Auth)
-- Strava API for activity sync
-- OpenWeatherMap + OpenAQ for conditions
-- Deployed on Vercel
+## Architecture
+- Pure client-side Next.js 14 (App Router) + TypeScript — no backend, no auth, no env vars
+- `lib/overpass.ts` — Overpass API client: fetches highway ways + street lamps for a bbox, classifies `lit` tags, computes coverage stats
+- `lib/geocode.ts` — Nominatim place search
+- `components/map/lighting-map.tsx` — Leaflet map (CARTO dark basemap), debounced viewport fetching, way/lamp rendering
+- `components/map/status-panel.tsx` — legend + coverage stats
+- `app/page.tsx` — single full-screen map page
 
-## Key Directories
-- `app/` - Next.js pages and API routes
-- `components/` - React components (ui/ for shadcn, features/ for app-specific)
-- `lib/` - Utilities and API clients
+## Key Behaviours
+- Data only loads at zoom >= 14 (Overpass payload limits); lamps render at zoom >= 16
+- Way colors: lit = amber, unlit = rose, no `lit` tag = dashed grey ("no data" is shown honestly, never assumed)
+- Overpass requests are debounced (500ms) and aborted on map movement; falls back to a second Overpass mirror
 
 ## Code Style
-- Use TypeScript strict mode
-- Prefer named exports
-- Use ES modules (import/export), not CommonJS
-- Components should be functional with hooks
-- Keep components small and focused
+- TypeScript strict mode, named exports, ES modules
+- Functional components with hooks; keep components small
+- Dark theme only — the product is for planning night runs
 
 ## Commands
 - `npm run dev` - Start development server
@@ -36,14 +29,7 @@ Plod is a minimalist PWA for casual runners. It syncs runs from Strava and adds 
 - `npm run lint` - Run ESLint
 
 ## Important Rules
-1. Never show pace or speed in the UI
-2. Use muted, calming colors - no bright sports colors
-3. Mobile-first always (375px width minimum)
-4. Dark mode is default
-5. Keep the UI minimal - when in doubt, remove elements
-
-## When Making Changes
-1. Create a new branch for features
-2. Test on mobile viewport
-3. Commit with conventional commits (feat:, fix:, etc.)
-4. Don't commit .env files or API keys
+1. Be honest about data coverage — never render untagged ways as if they were lit or unlit
+2. Be a good citizen of OSM infrastructure: debounce/abort Overpass calls, keep queries bounded, attribute OSM/CARTO
+3. Mobile-first (375px minimum); the primary use case is a phone at the front door before a run
+4. No accounts, no tracking, no API keys — keep it static and open
