@@ -2,10 +2,12 @@
 // Benchmarks OSM `lit` tag coverage in the central ~3km of major running
 // cities, via Overpass count queries. Produces a markdown table.
 //
-// Usage: node scripts/coverage.mjs
+// Usage:
+//   node scripts/coverage.mjs            # 21 international running cities
+//   node scripts/coverage.mjs --london   # all 33 London boroughs (case study)
 //
-// Be a good citizen: this runs ~3 light count-queries per city with a
-// pause between cities. Don't run it in a loop.
+// Be a good citizen: this runs ~3 light count-queries per area with a
+// pause between areas. Don't run it in a loop.
 
 const HIGHWAY_FILTER =
   "^(residential|unclassified|tertiary|tertiary_link|secondary|secondary_link|" +
@@ -40,6 +42,46 @@ const CITIES = [
   ["Melbourne", -37.83, 144.94, -37.8, 144.985],
 ]
 
+// [name, centre lat, centre lon] — ~3km box around each borough's centre.
+// Boroughs aren't rectangles; this benchmarks the runnable heart of each.
+const LONDON_BOROUGHS = [
+  ["City of London", 51.515, -0.092],
+  ["Westminster", 51.497, -0.137],
+  ["Camden", 51.545, -0.16],
+  ["Islington", 51.547, -0.105],
+  ["Hackney", 51.55, -0.06],
+  ["Tower Hamlets", 51.52, -0.035],
+  ["Southwark", 51.47, -0.08],
+  ["Lambeth", 51.46, -0.115],
+  ["Wandsworth", 51.45, -0.19],
+  ["Hammersmith & Fulham", 51.495, -0.22],
+  ["Kensington & Chelsea", 51.5, -0.19],
+  ["Brent", 51.56, -0.27],
+  ["Ealing", 51.52, -0.31],
+  ["Hounslow", 51.46, -0.36],
+  ["Richmond upon Thames", 51.44, -0.3],
+  ["Kingston upon Thames", 51.41, -0.3],
+  ["Merton", 51.41, -0.2],
+  ["Sutton", 51.36, -0.19],
+  ["Croydon", 51.37, -0.1],
+  ["Bromley", 51.4, 0.02],
+  ["Lewisham", 51.45, -0.02],
+  ["Greenwich", 51.48, 0.02],
+  ["Bexley", 51.45, 0.14],
+  ["Newham", 51.53, 0.03],
+  ["Waltham Forest", 51.59, -0.01],
+  ["Redbridge", 51.57, 0.07],
+  ["Barking & Dagenham", 51.54, 0.13],
+  ["Havering", 51.57, 0.18],
+  ["Enfield", 51.65, -0.08],
+  ["Barnet", 51.62, -0.21],
+  ["Haringey", 51.59, -0.11],
+  ["Harrow", 51.58, -0.33],
+  ["Hillingdon", 51.53, -0.45],
+].map(([name, lat, lon]) => [name, lat - 0.013, lon - 0.021, lat + 0.013, lon + 0.021])
+
+const AREAS = process.argv.includes("--london") ? LONDON_BOROUGHS : CITIES
+
 async function count(query) {
   const res = await fetch(OVERPASS, {
     method: "POST",
@@ -54,7 +96,7 @@ async function count(query) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 const rows = []
-for (const [name, s, w, n, e] of CITIES) {
+for (const [name, s, w, n, e] of AREAS) {
   const bbox = `${s},${w},${n},${e}`
   try {
     const total = await count(`way["highway"~"${HIGHWAY_FILTER}"](${bbox});`)

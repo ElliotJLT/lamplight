@@ -22,6 +22,10 @@ For half the year at northern latitudes, most runs by working adults happen befo
 
 Where coverage is thin, the plan is not a private database. Lamp-by-lamp records exist beyond OSM — many local councils publish theirs as open data, and a national-scale GB street-lights dataset exists under a public-sector licence (a partnership conversation, not a free download). The roadmap's import pipeline converts compatibly-licensed open datasets into OSM tagging, so every OSM-based map and app improves at once.
 
+## London first
+
+The strategy is to nail one city as a case study before expanding: **[LONDON.md](./LONDON.md)** — a per-borough OSM lighting-coverage benchmark (auto-refreshed weekly by the `london-data` GitHub Action), borough open-data ingestion targets, and the iconic routes we score for the pitch.
+
 ## Data pipeline
 
 The moat isn't the map — it's the unglamorous work of turning hundreds of inconsistent council lamp datasets into one canonical, licence-clean layer and feeding it back into OSM. `scripts/ingest.mjs` normalizes council open data (CSV/GeoJSON/ArcGIS, BNG→WGS84, Claude-assisted schema mapping for messy files) into `data/lamps/`, and `scripts/conflate.mjs` turns ingested lamps into human-reviewable `lit=yes` proposals for OSM. Full docs, licensing rules and the repo-size answer: [DATA.md](./DATA.md).
