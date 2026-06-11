@@ -1,0 +1,10 @@
+{
+  "barnet": {
+    "name": "London Borough of Barnet street lighting inventory (2020-07)",
+    "lamps": 19898,
+    "licence": "OGL-UK-3.0",
+    "attribution": "London Borough of Barnet",
+    "source_url": "file:barnet-lights.csv",
+    "fetched_at": "2026-06-11"
+  }
+}
