@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - claude/busy-pasteur-fl9wor # remove once merged to main
   workflow_dispatch:
 
 permissions:
