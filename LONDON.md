@@ -22,8 +22,43 @@ expand borough-by-borough logic to any city if partners bite.
 
 <!-- coverage:start -->
 
-*Not yet generated — run the `london-data` workflow (Actions tab) or
-`node scripts/coverage.mjs --london` locally.*
+*Generated 2026-06-11 from live OSM data via Overpass.*
+
+| City | Ways | Tagged `lit` | Coverage | Lamps | Verdict |
+|---|---|---|---|---|---|
+| City of London | — | — | error | — | ⚠️ Overpass returned 406 |
+| Westminster | — | — | error | — | ⚠️ Overpass returned 406 |
+| Camden | — | — | error | — | ⚠️ Overpass returned 406 |
+| Islington | — | — | error | — | ⚠️ Overpass returned 406 |
+| Hackney | — | — | error | — | ⚠️ Overpass returned 406 |
+| Tower Hamlets | — | — | error | — | ⚠️ Overpass returned 406 |
+| Southwark | — | — | error | — | ⚠️ Overpass returned 406 |
+| Lambeth | — | — | error | — | ⚠️ Overpass returned 406 |
+| Wandsworth | — | — | error | — | ⚠️ Overpass returned 406 |
+| Hammersmith & Fulham | — | — | error | — | ⚠️ Overpass returned 406 |
+| Kensington & Chelsea | — | — | error | — | ⚠️ Overpass returned 406 |
+| Brent | — | — | error | — | ⚠️ Overpass returned 406 |
+| Ealing | — | — | error | — | ⚠️ Overpass returned 406 |
+| Hounslow | — | — | error | — | ⚠️ Overpass returned 406 |
+| Richmond upon Thames | — | — | error | — | ⚠️ Overpass returned 406 |
+| Kingston upon Thames | — | — | error | — | ⚠️ Overpass returned 406 |
+| Merton | — | — | error | — | ⚠️ Overpass returned 406 |
+| Sutton | — | — | error | — | ⚠️ Overpass returned 406 |
+| Croydon | — | — | error | — | ⚠️ Overpass returned 406 |
+| Bromley | — | — | error | — | ⚠️ Overpass returned 406 |
+| Lewisham | — | — | error | — | ⚠️ Overpass returned 406 |
+| Greenwich | — | — | error | — | ⚠️ Overpass returned 406 |
+| Bexley | — | — | error | — | ⚠️ Overpass returned 406 |
+| Newham | — | — | error | — | ⚠️ Overpass returned 406 |
+| Waltham Forest | — | — | error | — | ⚠️ Overpass returned 406 |
+| Redbridge | — | — | error | — | ⚠️ Overpass returned 406 |
+| Barking & Dagenham | — | — | error | — | ⚠️ Overpass returned 406 |
+| Havering | — | — | error | — | ⚠️ Overpass returned 406 |
+| Enfield | — | — | error | — | ⚠️ Overpass returned 406 |
+| Barnet | — | — | error | — | ⚠️ Overpass returned 406 |
+| Haringey | — | — | error | — | ⚠️ Overpass returned 406 |
+| Harrow | — | — | error | — | ⚠️ Overpass returned 406 |
+| Hillingdon | — | — | error | — | ⚠️ Overpass returned 406 |
 
 <!-- coverage:end -->
 
