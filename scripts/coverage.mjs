@@ -14,8 +14,15 @@ const HIGHWAY_FILTER =
   "primary|primary_link|living_street|service|footway|path|cycleway|track|" +
   "pedestrian|steps|bridleway)$"
 
-const OVERPASS = "https://overpass-api.de/api/interpreter"
-const PAUSE_MS = 2000
+// Mirrors in preference order: shared CI IPs are often throttled (HTTP
+// 406/429) by the main instance, so identify ourselves and fall back.
+const OVERPASS_ENDPOINTS = [
+  "https://overpass-api.de/api/interpreter",
+  "https://overpass.kumi.systems/api/interpreter",
+  "https://overpass.private.coffee/api/interpreter",
+]
+const USER_AGENT = "lamplight-coverage/0.1 (+https://github.com/ElliotJLT/lamplight)"
+const PAUSE_MS = 3000
 
 // [name, south, west, north, east] — roughly 3km boxes on city centres.
 const CITIES = [
@@ -83,14 +90,24 @@ const LONDON_BOROUGHS = [
 const AREAS = process.argv.includes("--london") ? LONDON_BOROUGHS : CITIES
 
 async function count(query) {
-  const res = await fetch(OVERPASS, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: "data=" + encodeURIComponent(`[out:json][timeout:60];${query}out count;`),
-  })
-  if (!res.ok) throw new Error(`Overpass returned ${res.status}`)
-  const json = await res.json()
-  return parseInt(json.elements?.[0]?.tags?.total ?? "0", 10)
+  let lastStatus
+  for (const endpoint of OVERPASS_ENDPOINTS) {
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent": USER_AGENT,
+      },
+      body: "data=" + encodeURIComponent(`[out:json][timeout:60];${query}out count;`),
+    })
+    if (res.ok) {
+      const json = await res.json()
+      return parseInt(json.elements?.[0]?.tags?.total ?? "0", 10)
+    }
+    lastStatus = res.status
+    await sleep(2000)
+  }
+  throw new Error(`Overpass returned ${lastStatus}`)
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))

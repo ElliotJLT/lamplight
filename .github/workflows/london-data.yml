@@ -8,7 +8,9 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: [".github/workflows/london-data.yml"] # runs when this file changes
+    paths:
+      - ".github/workflows/london-data.yml"
+      - "scripts/coverage.mjs"
   schedule:
     - cron: "17 4 * * 1" # weekly, Monday 04:17 UTC
 
