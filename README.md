@@ -1,32 +1,26 @@
 # 💡 Lamplight
 
-**An open street-lighting map for running after dark.**
+**See which streets are lit before you run in the dark.**
 
-Lamplight shows which streets and paths are lit at night, so runners (and walkers, and cyclists) can plan routes they feel safe on in winter. It's built entirely on open data — OpenStreetMap's `lit` tags and `highway=street_lamp` nodes — and is designed to become an embeddable layer that any running app can adopt.
+Lamplight is an open street-lighting map for night runners. It renders street-lighting data from OpenStreetMap on a dark map, and scores any route — uploaded as GPX or drawn by hand — from 0–100 for how lit it will be after dark.
 
-**Status: working prototype.** Pan the map anywhere in the world and it pulls live lighting data for the area in view — then upload a GPX (or draw a route) to get a 0–100 after-dark score for it.
+**Live site:** https://elliotjlt.github.io/plod/ (deployed from this repo via GitHub Pages)
+
+## What it does
+
+- **Lighting map** — pan anywhere in the world; streets render **amber (lit)**, **rose (unlit)** or **dashed grey (no data yet)**, with individual lamp posts at high zoom. Data loads live for the area in view.
+- **Route scoring** — upload a GPX or trace a route on the map. `lib/route-score.ts` snap-matches it to the lit-street network (~20m sampling, 35m tolerance) and returns a 0–100 after-dark score, a data-confidence figure, and the route split into lit/unlit/unknown legs.
+- **Coverage honesty** — the score is computed only over distance that has data: missing data lowers *confidence*, it never inflates the *score*. Untagged streets are shown as unknown, never assumed lit.
 
 ## Why
 
-Every running app can route you 5k from your front door. None of them can tell you whether you'll be running it in the dark. From October to March in northern latitudes, most runs by working people happen before sunrise or after sunset — and "is this route lit?" is the single biggest factor in whether people (especially women) run at all.
+For half the year at northern latitudes, most runs by working adults happen before sunrise or after sunset. Route choice becomes a lighting question — especially for women — and the apps people actually plan runs with can't answer it. The data to answer it already exists in the open; Lamplight makes it visible, scoreable, and easy for any route-planning product to adopt.
 
-The data to answer that question already exists. It's just fragmented and unused:
+## Do we have the data? Is this UK-only?
 
-- OpenStreetMap has a [`lit=yes/no` tag](https://wiki.openstreetmap.org/wiki/Key:lit) on ways and [individual street lamps](https://wiki.openstreetmap.org/wiki/Tag:highway=street_lamp) — patchy, but good in many cities
-- Ordnance Survey has captured [6.5 million street lights across Great Britain](https://www.ordnancesurvey.co.uk/news/new-national-street-lights-data-from-ordnance-survey)
-- Dozens of councils publish lamp-column locations as open data
-- Google has been [testing a lighting layer](https://www.techradar.com/news/google-maps-may-start-guiding-you-towards-well-lit-routes-instead-of-dark-alleys) for years without shipping it
+**Not UK-only.** Everything renders from OpenStreetMap, which is worldwide: the [`lit` tag](https://wiki.openstreetmap.org/wiki/Key:lit) on ways and [`highway=street_lamp`](https://wiki.openstreetmap.org/wiki/Tag:highway=street_lamp) nodes. Coverage varies city by city because it depends on volunteer surveying — typically strong in northern-European cities, patchier elsewhere. Run `node scripts/coverage.mjs` to benchmark `lit` coverage across 21 running cities and print a markdown table.
 
-Lamplight's goal: make street lighting a first-class, open map layer — and make it trivial for any routing product to use it. See [PITCH.md](./PITCH.md) for the partner pitch.
-
-## How it works
-
-- **Map**: Leaflet with CARTO dark basemap (the app assumes you're planning a night run)
-- **Data**: live [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API) queries for the current viewport — runnable ways classified as **lit** (amber), **unlit** (rose), or **no data** (dashed grey), plus individual lamp nodes at high zoom
-- **Route scoring**: upload a GPX or trace a route on the map; `lib/route-score.ts` snap-matches it to the lit-way network (~20m sampling, 35m tolerance) and returns a 0–100 after-dark score, a data-confidence figure, and the route split into lit/unlit/unknown legs for rendering. This is the embeddable capability — see [INTEGRATIONS.md](./INTEGRATIONS.md)
-- **Coverage honesty**: the stats panel shows what share of paths in view actually carry lighting data, and the route score is computed only over tagged distance — missing data lowers confidence, never inflates the score. `scripts/coverage.mjs` benchmarks `lit` coverage across 21 running cities
-
-No accounts, no backend, no API keys. The whole thing is a static Next.js app talking to public OSM infrastructure.
+Where coverage is thin, the plan is not a private database. Lamp-by-lamp records exist beyond OSM — many local councils publish theirs as open data, and a national-scale GB street-lights dataset exists under a public-sector licence (a partnership conversation, not a free download). The roadmap's import pipeline converts compatibly-licensed open datasets into OSM tagging, so every OSM-based map and app improves at once.
 
 ## Running locally
 
@@ -35,20 +29,25 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. Search for your town or hit the locate button.
+Open http://localhost:3000 — landing page with the embedded live map; the full-screen app is at `/map`.
+
+## For route-planning products
+
+The scorer is a small, dependency-free TypeScript module designed to be lifted into any routing or fitness product, with "prefer lit streets" routing weights and a pre-rendered tile layer on the roadmap. Integration surfaces and data-licensing notes: [INTEGRATIONS.md](./INTEGRATIONS.md). The partner one-pager: [PITCH.md](./PITCH.md).
 
 ## Roadmap
 
-1. ~~**Lamplight score**~~ — ✅ shipped: 0–100 after-dark score per route, GPX upload + draw-on-map, embeddable scorer in `lib/route-score.ts`
-2. **Prove coverage** — run `scripts/coverage.mjs` and publish the city benchmark table
-3. **Import pipeline** — convert council / OS open data lamp datasets into OSM-ready `lit` tagging proposals (the highest-leverage contribution: improving the shared map, not forking it)
-4. **Pre-rendered vector tiles** — a `lighting` tile layer any app can add in one line, instead of hammering Overpass
-5. **Routing cost profiles** — published "prefer lit streets" profiles for Valhalla/OSRM/GraphHopper
+1. ~~Route scoring~~ — ✅ shipped (GPX upload, draw-on-map, embeddable scorer)
+2. ~~Public site~~ — ✅ GitHub Pages deploy from this repo
+3. **Publish the coverage benchmark** — run `scripts/coverage.mjs`, commit the table
+4. **Import pipeline** — open lamp datasets → OSM `lit` tagging proposals (the data flywheel)
+5. **Pre-rendered vector tiles** — a lighting layer any app can add in one line, without hammering Overpass
+6. **Reference routing profiles** — "prefer lit streets" weights for the major open routing engines
 
 ## Tech
 
-Next.js 14 (App Router) · TypeScript · Tailwind CSS · Leaflet · Overpass API · Nominatim
+Next.js 14 (static export) · TypeScript · Tailwind CSS · Leaflet · Overpass API · Nominatim
 
-## License
+## License & attribution
 
-MIT. Map data © OpenStreetMap contributors ([ODbL](https://www.openstreetmap.org/copyright)). Basemap © CARTO.
+Code MIT. Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors (ODbL). Basemap © [CARTO](https://carto.com/attributions). Please be gentle with public OSM infrastructure — requests are debounced and bounded by design.
