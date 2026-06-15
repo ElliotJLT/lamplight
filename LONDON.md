@@ -22,43 +22,43 @@ expand borough-by-borough logic to any city if partners bite.
 
 <!-- coverage:start -->
 
-*Generated 2026-06-11 from live OSM data via Overpass.*
+*Generated 2026-06-15 from live OSM data via Overpass.*
 
 | City | Ways | Tagged `lit` | Coverage | Lamps | Verdict |
 |---|---|---|---|---|---|
-| City of London | — | — | error | — | ⚠️ Overpass returned 406 |
-| Westminster | — | — | error | — | ⚠️ Overpass returned 406 |
-| Camden | — | — | error | — | ⚠️ Overpass returned 406 |
-| Islington | — | — | error | — | ⚠️ Overpass returned 406 |
-| Hackney | — | — | error | — | ⚠️ Overpass returned 406 |
-| Tower Hamlets | — | — | error | — | ⚠️ Overpass returned 406 |
-| Southwark | — | — | error | — | ⚠️ Overpass returned 406 |
-| Lambeth | — | — | error | — | ⚠️ Overpass returned 406 |
-| Wandsworth | — | — | error | — | ⚠️ Overpass returned 406 |
-| Hammersmith & Fulham | — | — | error | — | ⚠️ Overpass returned 406 |
-| Kensington & Chelsea | — | — | error | — | ⚠️ Overpass returned 406 |
-| Brent | — | — | error | — | ⚠️ Overpass returned 406 |
-| Ealing | — | — | error | — | ⚠️ Overpass returned 406 |
-| Hounslow | — | — | error | — | ⚠️ Overpass returned 406 |
-| Richmond upon Thames | — | — | error | — | ⚠️ Overpass returned 406 |
-| Kingston upon Thames | — | — | error | — | ⚠️ Overpass returned 406 |
-| Merton | — | — | error | — | ⚠️ Overpass returned 406 |
-| Sutton | — | — | error | — | ⚠️ Overpass returned 406 |
-| Croydon | — | — | error | — | ⚠️ Overpass returned 406 |
-| Bromley | — | — | error | — | ⚠️ Overpass returned 406 |
-| Lewisham | — | — | error | — | ⚠️ Overpass returned 406 |
-| Greenwich | — | — | error | — | ⚠️ Overpass returned 406 |
-| Bexley | — | — | error | — | ⚠️ Overpass returned 406 |
-| Newham | — | — | error | — | ⚠️ Overpass returned 406 |
-| Waltham Forest | — | — | error | — | ⚠️ Overpass returned 406 |
-| Redbridge | — | — | error | — | ⚠️ Overpass returned 406 |
-| Barking & Dagenham | — | — | error | — | ⚠️ Overpass returned 406 |
-| Havering | — | — | error | — | ⚠️ Overpass returned 406 |
-| Enfield | — | — | error | — | ⚠️ Overpass returned 406 |
-| Barnet | — | — | error | — | ⚠️ Overpass returned 406 |
-| Haringey | — | — | error | — | ⚠️ Overpass returned 406 |
-| Harrow | — | — | error | — | ⚠️ Overpass returned 406 |
-| Hillingdon | — | — | error | — | ⚠️ Overpass returned 406 |
+| City of London | 21141 | 7377 | 35% | 421 | 🔴 sparse |
+| Westminster | — | — | error | — | ⚠️ Overpass returned 504 |
+| Camden | 5877 | 1969 | 34% | 90 | 🔴 sparse |
+| Islington | 6688 | 3829 | 57% | 145 | 🟡 partial |
+| Hackney | 7529 | 4662 | 62% | 306 | 🟡 partial |
+| Tower Hamlets | 9514 | 4405 | 46% | 369 | 🟡 partial |
+| Southwark | 4608 | 861 | 19% | 1 | 🔴 sparse |
+| Lambeth | 5371 | 1015 | 19% | 7 | 🔴 sparse |
+| Wandsworth | 4455 | 906 | 20% | 8 | 🔴 sparse |
+| Hammersmith & Fulham | 5833 | 2364 | 41% | 3 | 🟡 partial |
+| Kensington & Chelsea | 5779 | 2527 | 44% | 14 | 🟡 partial |
+| Brent | 2642 | 633 | 24% | 168 | 🔴 sparse |
+| Ealing | 2931 | 810 | 28% | 83 | 🔴 sparse |
+| Hounslow | 2448 | 551 | 23% | 40 | 🔴 sparse |
+| Richmond upon Thames | 1784 | 331 | 19% | 0 | 🔴 sparse |
+| Kingston upon Thames | 3713 | 931 | 25% | 8 | 🔴 sparse |
+| Merton | 4247 | 1420 | 33% | 52 | 🔴 sparse |
+| Sutton | 2641 | 329 | 12% | 1 | 🔴 sparse |
+| Croydon | — | — | error | — | ⚠️ Overpass returned 504 |
+| Bromley | 2137 | 547 | 26% | 5 | 🔴 sparse |
+| Lewisham | 2941 | 931 | 32% | 64 | 🔴 sparse |
+| Greenwich | 6850 | 2460 | 36% | 441 | 🔴 sparse |
+| Bexley | 3113 | 399 | 13% | 83 | 🔴 sparse |
+| Newham | 5041 | 2234 | 44% | 86 | 🟡 partial |
+| Waltham Forest | — | — | error | — | ⚠️ Overpass returned 504 |
+| Redbridge | 2688 | 650 | 24% | 193 | 🔴 sparse |
+| Barking & Dagenham | 2226 | 855 | 38% | 5 | 🔴 sparse |
+| Havering | 2473 | 571 | 23% | 6 | 🔴 sparse |
+| Enfield | 2737 | 1105 | 40% | 123 | 🟡 partial |
+| Barnet | 892 | 145 | 16% | 0 | 🔴 sparse |
+| Haringey | 5224 | 1231 | 24% | 192 | 🔴 sparse |
+| Harrow | 2374 | 1343 | 57% | 30 | 🟡 partial |
+| Hillingdon | 1696 | 233 | 14% | 0 | 🔴 sparse |
 
 <!-- coverage:end -->
 
