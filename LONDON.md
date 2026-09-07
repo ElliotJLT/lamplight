@@ -22,43 +22,43 @@ expand borough-by-borough logic to any city if partners bite.
 
 <!-- coverage:start -->
 
-*Generated 2026-08-31 from live OSM data via Overpass.*
+*Generated 2026-09-07 from live OSM data via Overpass.*
 
 | City | Ways | Tagged `lit` | Coverage | Lamps | Verdict |
 |---|---|---|---|---|---|
-| City of London | 20566 | 7454 | 36% | 425 | 🔴 sparse |
-| Westminster | — | — | error | — | ⚠️ Overpass returned 502 |
-| Camden | 5913 | 1983 | 34% | 90 | 🔴 sparse |
-| Islington | — | — | error | — | ⚠️ Overpass returned 500 |
-| Hackney | — | — | error | — | ⚠️ Overpass returned 502 |
-| Tower Hamlets | — | — | error | — | ⚠️ Overpass returned 500 |
-| Southwark | — | — | error | — | ⚠️ Overpass returned 500 |
-| Lambeth | — | — | error | — | ⚠️ Overpass returned 502 |
-| Wandsworth | — | — | error | — | ⚠️ Overpass returned 502 |
-| Hammersmith & Fulham | — | — | error | — | ⚠️ Overpass returned 502 |
-| Kensington & Chelsea | — | — | error | — | ⚠️ Overpass returned 502 |
-| Brent | — | — | error | — | ⚠️ Overpass returned 500 |
-| Ealing | 2943 | 810 | 28% | 83 | 🔴 sparse |
-| Hounslow | — | — | error | — | ⚠️ Overpass returned 500 |
-| Richmond upon Thames | 1798 | 337 | 19% | 0 | 🔴 sparse |
-| Kingston upon Thames | — | — | error | — | ⚠️ Overpass returned 502 |
-| Merton | 4251 | 1438 | 34% | 52 | 🔴 sparse |
-| Sutton | — | — | error | — | ⚠️ Overpass returned 500 |
-| Croydon | — | — | error | — | ⚠️ Overpass returned 500 |
-| Bromley | — | — | error | — | ⚠️ Overpass returned 500 |
-| Lewisham | 3003 | 921 | 31% | 100 | 🔴 sparse |
-| Greenwich | — | — | error | — | ⚠️ Overpass returned 500 |
-| Bexley | — | — | error | — | ⚠️ Overpass returned 502 |
-| Newham | 4944 | 2310 | 47% | 86 | 🟡 partial |
-| Waltham Forest | — | — | error | — | ⚠️ Overpass returned 500 |
-| Redbridge | — | — | error | — | ⚠️ Overpass returned 500 |
-| Barking & Dagenham | — | — | error | — | ⚠️ Overpass returned 502 |
-| Havering | — | — | error | — | ⚠️ Overpass returned 500 |
-| Enfield | — | — | error | — | ⚠️ Overpass returned 502 |
-| Barnet | — | — | error | — | ⚠️ Overpass returned 500 |
-| Haringey | — | — | error | — | ⚠️ Overpass returned 500 |
-| Harrow | — | — | error | — | ⚠️ Overpass returned 502 |
-| Hillingdon | — | — | error | — | ⚠️ Overpass returned 500 |
+| City of London | 19377 | 7836 | 40% | 425 | 🟡 partial |
+| Westminster | 12415 | 4705 | 38% | 360 | 🔴 sparse |
+| Camden | 5918 | 1973 | 33% | 90 | 🔴 sparse |
+| Islington | 6803 | 3824 | 56% | 416 | 🟡 partial |
+| Hackney | 7656 | 5189 | 68% | 306 | 🟡 partial |
+| Tower Hamlets | — | — | error | — | ⚠️ Overpass returned 504 |
+| Southwark | — | — | error | — | ⚠️ Overpass returned 504 |
+| Lambeth | 5356 | 1150 | 21% | 7 | 🔴 sparse |
+| Wandsworth | — | — | error | — | ⚠️ Overpass returned 504 |
+| Hammersmith & Fulham | 6075 | 2444 | 40% | 3 | 🟡 partial |
+| Kensington & Chelsea | 5786 | 2543 | 44% | 14 | 🟡 partial |
+| Brent | 2720 | 633 | 23% | 168 | 🔴 sparse |
+| Ealing | 2942 | 809 | 27% | 83 | 🔴 sparse |
+| Hounslow | — | — | error | — | ⚠️ Overpass returned 504 |
+| Richmond upon Thames | — | — | error | — | ⚠️ Overpass returned 504 |
+| Kingston upon Thames | 3832 | 984 | 26% | 8 | 🔴 sparse |
+| Merton | 4251 | 1420 | 33% | 52 | 🔴 sparse |
+| Sutton | 2738 | 339 | 12% | 1 | 🔴 sparse |
+| Croydon | 3606 | 998 | 28% | 74 | 🔴 sparse |
+| Bromley | 2144 | 547 | 26% | 5 | 🔴 sparse |
+| Lewisham | 3001 | 920 | 31% | 100 | 🔴 sparse |
+| Greenwich | 7062 | 2488 | 35% | 440 | 🔴 sparse |
+| Bexley | 3135 | 399 | 13% | 83 | 🔴 sparse |
+| Newham | 4944 | 2234 | 45% | 86 | 🟡 partial |
+| Waltham Forest | 4467 | 1227 | 27% | 65 | 🔴 sparse |
+| Redbridge | — | — | error | — | ⚠️ Overpass returned 504 |
+| Barking & Dagenham | — | — | error | — | ⚠️ Overpass returned 504 |
+| Havering | 2393 | 690 | 29% | 6 | 🔴 sparse |
+| Enfield | — | — | error | — | ⚠️ Overpass returned 504 |
+| Barnet | 892 | 145 | 16% | 0 | 🔴 sparse |
+| Haringey | 5316 | 1249 | 23% | 208 | 🔴 sparse |
+| Harrow | 2364 | 1347 | 57% | 30 | 🟡 partial |
+| Hillingdon | — | — | error | — | ⚠️ Overpass returned 504 |
 
 <!-- coverage:end -->
 
