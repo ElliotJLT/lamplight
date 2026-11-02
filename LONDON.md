@@ -22,43 +22,43 @@ expand borough-by-borough logic to any city if partners bite.
 
 <!-- coverage:start -->
 
-*Generated 2026-10-26 from live OSM data via Overpass.*
+*Generated 2026-11-02 from live OSM data via Overpass.*
 
 | City | Ways | Tagged `lit` | Coverage | Lamps | Verdict |
 |---|---|---|---|---|---|
-| City of London | — | — | error | — | ⚠️ Overpass returned 504 |
-| Westminster | — | — | error | — | ⚠️ fetch failed |
-| Camden | — | — | error | — | ⚠️ Overpass returned 504 |
-| Islington | — | — | error | — | ⚠️ Overpass returned 504 |
-| Hackney | — | — | error | — | ⚠️ Overpass returned 504 |
-| Tower Hamlets | — | — | error | — | ⚠️ Overpass returned 504 |
-| Southwark | — | — | error | — | ⚠️ Overpass returned 504 |
-| Lambeth | 5481 | 1015 | 19% | 10 | 🔴 sparse |
-| Wandsworth | 4560 | 906 | 20% | 8 | 🔴 sparse |
-| Hammersmith & Fulham | — | — | error | — | ⚠️ Overpass returned 502 |
-| Kensington & Chelsea | 5834 | 2598 | 45% | 17 | 🟡 partial |
-| Brent | 2725 | 757 | 28% | 168 | 🔴 sparse |
-| Ealing | — | — | error | — | ⚠️ fetch failed |
-| Hounslow | — | — | error | — | ⚠️ fetch failed |
-| Richmond upon Thames | — | — | error | — | ⚠️ Overpass returned 504 |
-| Kingston upon Thames | — | — | error | — | ⚠️ Overpass returned 504 |
-| Merton | — | — | error | — | ⚠️ fetch failed |
-| Sutton | — | — | error | — | ⚠️ Overpass returned 504 |
-| Croydon | — | — | error | — | ⚠️ fetch failed |
-| Bromley | 2150 | 550 | 26% | 5 | 🔴 sparse |
-| Lewisham | — | — | error | — | ⚠️ fetch failed |
-| Greenwich | — | — | error | — | ⚠️ Overpass returned 502 |
-| Bexley | — | — | error | — | ⚠️ fetch failed |
-| Newham | — | — | error | — | ⚠️ Overpass returned 504 |
-| Waltham Forest | — | — | error | — | ⚠️ fetch failed |
-| Redbridge | — | — | error | — | ⚠️ fetch failed |
-| Barking & Dagenham | — | — | error | — | ⚠️ Overpass returned 502 |
-| Havering | — | — | error | — | ⚠️ Overpass returned 504 |
-| Enfield | — | — | error | — | ⚠️ Overpass returned 504 |
-| Barnet | 890 | 145 | 16% | 0 | 🔴 sparse |
-| Haringey | — | — | error | — | ⚠️ fetch failed |
-| Harrow | 2527 | 1348 | 53% | 30 | 🟡 partial |
-| Hillingdon | — | — | error | — | ⚠️ Overpass returned 502 |
+| City of London | — | — | error | — | ⚠️ fetch failed |
+| Westminster | — | — | error | — | ⚠️ Overpass returned 504 |
+| Camden | — | — | error | — | ⚠️ fetch failed |
+| Islington | — | — | error | — | ⚠️ fetch failed |
+| Hackney | — | — | error | — | ⚠️ fetch failed |
+| Tower Hamlets | — | — | error | — | ⚠️ Overpass returned 502 |
+| Southwark | — | — | error | — | ⚠️ Overpass returned 502 |
+| Lambeth | — | — | error | — | ⚠️ Overpass returned 502 |
+| Wandsworth | — | — | error | — | ⚠️ fetch failed |
+| Hammersmith & Fulham | 5838 | 2596 | 44% | 6 | 🟡 partial |
+| Kensington & Chelsea | 5834 | 2598 | 45% | 14 | 🟡 partial |
+| Brent | — | — | error | — | ⚠️ fetch failed |
+| Ealing | — | — | error | — | ⚠️ Overpass returned 504 |
+| Hounslow | 2526 | 582 | 23% | 40 | 🔴 sparse |
+| Richmond upon Thames | 1798 | 337 | 19% | 0 | 🔴 sparse |
+| Kingston upon Thames | 3893 | 984 | 25% | 8 | 🔴 sparse |
+| Merton | 4267 | 1463 | 34% | 52 | 🔴 sparse |
+| Sutton | 2759 | 340 | 12% | 1 | 🔴 sparse |
+| Croydon | 3606 | 998 | 28% | 74 | 🔴 sparse |
+| Bromley | — | — | error | — | ⚠️ Overpass returned 504 |
+| Lewisham | — | — | error | — | ⚠️ Overpass returned 504 |
+| Greenwich | 6844 | 2460 | 36% | 476 | 🔴 sparse |
+| Bexley | 3250 | 404 | 12% | 83 | 🔴 sparse |
+| Newham | 4966 | 2234 | 45% | 86 | 🟡 partial |
+| Waltham Forest | — | — | error | — | ⚠️ Overpass returned 504 |
+| Redbridge | — | — | error | — | ⚠️ Overpass returned 502 |
+| Barking & Dagenham | 2317 | 883 | 38% | 5 | 🔴 sparse |
+| Havering | — | — | error | — | ⚠️ fetch failed |
+| Enfield | — | — | error | — | ⚠️ fetch failed |
+| Barnet | — | — | error | — | ⚠️ Overpass returned 504 |
+| Haringey | 5335 | 1271 | 24% | 209 | 🔴 sparse |
+| Harrow | — | — | error | — | ⚠️ Overpass returned 502 |
+| Hillingdon | — | — | error | — | ⚠️ Overpass returned 504 |
 
 <!-- coverage:end -->
 
