@@ -22,43 +22,43 @@ expand borough-by-borough logic to any city if partners bite.
 
 <!-- coverage:start -->
 
-*Generated 2026-11-09 from live OSM data via Overpass.*
+*Generated 2026-11-16 from live OSM data via Overpass.*
 
 | City | Ways | Tagged `lit` | Coverage | Lamps | Verdict |
 |---|---|---|---|---|---|
-| City of London | — | — | error | — | ⚠️ Overpass returned 502 |
+| City of London | 16646 | 7363 | 44% | 425 | 🟡 partial |
 | Westminster | — | — | error | — | ⚠️ fetch failed |
-| Camden | — | — | error | — | ⚠️ Overpass returned 504 |
-| Islington | 6687 | 4020 | 60% | 416 | 🟡 partial |
-| Hackney | 7713 | 5159 | 67% | 430 | 🟡 partial |
-| Tower Hamlets | 9382 | 4795 | 51% | 370 | 🟡 partial |
-| Southwark | 4648 | 923 | 20% | 1 | 🔴 sparse |
-| Lambeth | — | — | error | — | ⚠️ fetch failed |
+| Camden | 5940 | 2039 | 34% | 90 | 🔴 sparse |
+| Islington | — | — | error | — | ⚠️ fetch failed |
+| Hackney | — | — | error | — | ⚠️ fetch failed |
+| Tower Hamlets | — | — | error | — | ⚠️ fetch failed |
+| Southwark | — | — | error | — | ⚠️ fetch failed |
+| Lambeth | — | — | error | — | ⚠️ Overpass returned 504 |
 | Wandsworth | 4569 | 950 | 21% | 8 | 🔴 sparse |
-| Hammersmith & Fulham | — | — | error | — | ⚠️ Overpass returned 504 |
-| Kensington & Chelsea | — | — | error | — | ⚠️ Overpass returned 502 |
-| Brent | — | — | error | — | ⚠️ Overpass returned 504 |
-| Ealing | — | — | error | — | ⚠️ Overpass returned 504 |
-| Hounslow | — | — | error | — | ⚠️ Overpass returned 504 |
-| Richmond upon Thames | — | — | error | — | ⚠️ fetch failed |
-| Kingston upon Thames | — | — | error | — | ⚠️ fetch failed |
-| Merton | 4267 | 1463 | 34% | 52 | 🔴 sparse |
-| Sutton | — | — | error | — | ⚠️ Overpass returned 504 |
-| Croydon | 3621 | 998 | 28% | 74 | 🔴 sparse |
-| Bromley | — | — | error | — | ⚠️ Overpass returned 504 |
-| Lewisham | — | — | error | — | ⚠️ fetch failed |
-| Greenwich | 7108 | 2513 | 35% | 476 | 🔴 sparse |
-| Bexley | 3135 | 404 | 13% | 83 | 🔴 sparse |
-| Newham | 4990 | 2357 | 47% | 86 | 🟡 partial |
-| Waltham Forest | 4582 | 1253 | 27% | 65 | 🔴 sparse |
-| Redbridge | — | — | error | — | ⚠️ Overpass returned 504 |
+| Hammersmith & Fulham | 6201 | 2601 | 42% | 3 | 🟡 partial |
+| Kensington & Chelsea | — | — | error | — | ⚠️ fetch failed |
+| Brent | — | — | error | — | ⚠️ fetch failed |
+| Ealing | — | — | error | — | ⚠️ Overpass returned 502 |
+| Hounslow | — | — | error | — | ⚠️ fetch failed |
+| Richmond upon Thames | — | — | error | — | ⚠️ Overpass returned 502 |
+| Kingston upon Thames | — | — | error | — | ⚠️ Overpass returned 502 |
+| Merton | 4253 | 1463 | 34% | 52 | 🔴 sparse |
+| Sutton | — | — | error | — | ⚠️ fetch failed |
+| Croydon | — | — | error | — | ⚠️ fetch failed |
+| Bromley | — | — | error | — | ⚠️ fetch failed |
+| Lewisham | — | — | error | — | ⚠️ Overpass returned 504 |
+| Greenwich | — | — | error | — | ⚠️ Overpass returned 502 |
+| Bexley | 3250 | 399 | 12% | 83 | 🔴 sparse |
+| Newham | — | — | error | — | ⚠️ Overpass returned 502 |
+| Waltham Forest | — | — | error | — | ⚠️ fetch failed |
+| Redbridge | 2670 | 975 | 37% | 193 | 🔴 sparse |
 | Barking & Dagenham | 2317 | 883 | 38% | 5 | 🔴 sparse |
-| Havering | — | — | error | — | ⚠️ Overpass returned 504 |
+| Havering | — | — | error | — | ⚠️ fetch failed |
 | Enfield | — | — | error | — | ⚠️ fetch failed |
 | Barnet | 890 | 145 | 16% | 0 | 🔴 sparse |
-| Haringey | — | — | error | — | ⚠️ Overpass returned 504 |
-| Harrow | — | — | error | — | ⚠️ fetch failed |
-| Hillingdon | 1748 | 263 | 15% | 0 | 🔴 sparse |
+| Haringey | — | — | error | — | ⚠️ fetch failed |
+| Harrow | — | — | error | — | ⚠️ Overpass returned 502 |
+| Hillingdon | — | — | error | — | ⚠️ fetch failed |
 
 <!-- coverage:end -->
 
